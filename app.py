@@ -10,7 +10,6 @@ urls = (
 )
 
 app = web.application(urls, globals())
-render = web.template.render('templates/', globals={'csrf_token': utils.csrf_token})
 web.config.debug = config.DEBUG
 # Session/debug tweak from http://webpy.org/cookbook/session_with_reloader
 if web.config.get('_session') is None:
@@ -18,6 +17,32 @@ if web.config.get('_session') is None:
     web.config._session = session
 else:
     session = web.config._session
+
+
+def csrf_token():
+    if 'csrf_token' not in session:
+        from uuid import uuid4
+        session.csrf_token = uuid4().hex
+    return session.csrf_token
+
+render = web.template.render('templates/', globals={'csrf_token': csrf_token})
+
+
+def csrf_protected(f):
+    """Usage:
+       @csrf_protected
+       def POST(self):
+           ..."""
+    def decorated(*args, **kwargs):
+        inp = web.input()
+        if not (('csrf_token' in inp) and inp.csrf_token == session.pop('csrf_token', None)):
+            raise web.HTTPError(
+                "400 Bad request",
+                {'content-type': 'text/html'},
+                'Cross-site request forgery (CSRF) attempt (or stale browser form). <a href="/">Back to the form</a>.')
+
+        return f(*args, **kwargs)
+    return decorated
 
 
 class home:
@@ -35,7 +60,7 @@ class home:
 
 
 class subscribe:
-    @utils.csrf_protected
+    @csrf_protected
     def POST(self):
         form = utils.subscribe_form()
         configuration = config.get_config(web.ctx.host)
