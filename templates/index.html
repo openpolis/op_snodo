@@ -26,22 +26,22 @@ $def with (data, form, success)
 
 			<form action="/subscription" method="post">
 				$if success:
-					<p class="text-success">Iscrizione avvenuta correttamente.</p>
+					<p class="alert alert-success">Iscrizione avvenuta correttamente.</p>
 				<fieldset>
 					$:form.first_name.render()
 					$if form.first_name.note:
-						<p class="text-error">$:form.first_name.note</p>
+						<p class="alert alert-error">$:form.first_name.note</p>
 
 					$:form.last_name.render()
 					$if form.last_name.note:
-						<p class="text-error">$:form.last_name.note</p>
+						<p class="alert alert-error">$:form.last_name.note</p>
 
 					<div class="input-prepend">
 						<span class="add-on">@</span>
 						$:form.email.render()
 					</div>
 					$if form.email.note:
-						<p class="text-error">$:form.email.note</p>
+						<p class="alert alert-error">$:form.email.note</p>
 					<p class="muted">
 						<small>I tuoi dati verranno utilizzati unicamente per informarti sulle iniziative di Openpolis</small>
 					</p>
