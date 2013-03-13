@@ -4,7 +4,7 @@ DEBUG = True
 
 WEB_SERVICES = {
     "parlamento.openpolis.it": dict(
-        title=u"Indice di produttività parlamentare",
+        title=u"Openparlamento",
         logo="/static/logo-openparlamento.png",
         arrow="/static/arrow-red.png",
         arrow_link="http://parlamento16.openpolis.it/",
