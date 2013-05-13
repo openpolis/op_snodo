@@ -36,6 +36,21 @@ WEB_SERVICES = {
             su tutte le iniziative di Openpolis.""",
         form_description_image="/static/logo-indice-new.png",
     ),
+    "udine.openmunicipio.it": dict(
+        title=u"Openmunicipio Udine",
+        logo="/static/logo-openudine.png",
+        arrow="/static/arrow-blue.png",
+        arrow_link="http://udine2008.openmunicipio.it/",
+        service_uri="http://udine2013.openmunicipio.it/",
+        description=u"""<strong>Open Municipio Udine (Consiliatura 2008-2013)</strong><br>
+            L'edizione della piattaforma web Open municipio con tutti i lavori della consiliatura 2008-2013
+            è ancora disponibile e consultabile online.<br/>
+            I dati sono aggiornati ad aprile 2013 e provengono dalla fonte ufficiale del Comune di Udine.""",
+        form_description=u"""Stiamo lavorando alla nuova edizione di Open municipio Udine,
+            lasciaci la tua e-mail per sapere quando saremo online ed essere informato
+            sulle prossime iniziative di Openpolis.""",
+        form_description_image="/static/logo-openudine-new.png",
+    ),
 }
 
 
